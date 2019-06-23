@@ -27,7 +27,7 @@ function header(props) {
           <MenuIcon />
         </IconButton>
         <Typography variant="title" color="inherit" className={classes.grow}>
-          React + ReduxでJWT認証を導入しよう！
+          AIRI
         </Typography>
           <Button color="inherit" onClick={props.onClick}>{props.menu}</Button>
       </Toolbar>

@@ -1,9 +1,12 @@
+import { authHeader } from '../middleware';
+
 const apiHost = 'http://localhost:8080/api';
 
 export const userService = {
   login,
   logout,
-  getMe
+  getMe,
+  getList
 };
 
 function login(username, password) {
@@ -12,7 +15,7 @@ function login(username, password) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: username,
-      password
+      password: password,
     })
   };
 
@@ -49,4 +52,22 @@ function handleResponse(response) {
 
     return data;
   });
+}
+
+function getMe() {
+  const requestOptions = {
+      method: 'GET',
+      headers: authHeader()
+  };
+
+  return fetch(`${apiHost}/me`, requestOptions).then(handleResponse);
+}
+
+function getList() {
+  const requestOptions = {
+      method: 'GET',
+      headers: authHeader()
+  };
+
+  return fetch(`${apiHost}/list`, requestOptions).then(handleResponse);
 }

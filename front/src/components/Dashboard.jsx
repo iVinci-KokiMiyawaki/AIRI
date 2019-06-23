@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+
 import Header from './Header';
 const styles = theme => ({
   root: {
@@ -22,18 +29,41 @@ const styles = theme => ({
 });
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    this.props.onMount();
+    this.props.getUserList();
+  }
   render() {
-    const { classes} = this.props;
+    const { classes, me, users } = this.props;
+
+    const list = Object.keys(users).length !== 0 ? users : [1,2,3];
     return (
       <div>
         <Header menu="ログアウト" onClick={this.props.logout}/>
         <Paper className={classes.paper} elevation={1}>
-          <Typography variant="headline" component="h3">
-            <strong>田中太郎</strong>さん、ダッシュボードへようこそ！
-          </Typography>
-          <Typography component="p">
-            さあ、JWT認証をマスターしたらSPAアプリケーションを今すぐ開発しましょう！
-          </Typography>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>id</TableCell>
+                <TableCell>nickname</TableCell>
+                <TableCell>name</TableCell>
+                <TableCell>birthday</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {list.map(row => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">{row.id}</TableCell>
+                  <TableCell >{row.nickname}</TableCell>
+                  <TableCell >{row.name}</TableCell>
+                  <TableCell >{row.birthday}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </Paper>
       </div>
     );

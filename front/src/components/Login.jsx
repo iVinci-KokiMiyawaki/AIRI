@@ -68,7 +68,9 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { username, password } = this.state;
-    this.props.loginRequest;
+    if (username && password) {
+      this.props.login(username,password);
+    }
   }
   render(){
     const { classes } = this.props;
@@ -81,7 +83,7 @@ class Login extends Component {
             <Avatar className={classes.avatar}>
               <LockIcon />
             </Avatar>
-            <Typography variant="headline">ログインしてはじめよう！</Typography>
+            <Typography variant="headline">ログイン</Typography>
             {this.props.error ?
               <p className={classes.alert}>ユーザ名またはパスワードが正しくありません。</p>
               : ''
@@ -104,7 +106,7 @@ class Login extends Component {
               <Button
                 type="submit"
                 fullWidth
-                variant="raised"
+                variant="contained"
                 color="primary"
                 className={classes.submit}
                 onClick={this.handleSubmit}

@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
+import { PrivateRoute } from './components/PrivateRoute';
 
 const styles = {
   root: {
@@ -17,12 +18,8 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Router>
-          <div>
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/" exact={true} component={Login} />
-          </div>
-        </Router>
+        <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
+        <Route path="/" exact={true} component={Login} />
       </div>
     );
   }
