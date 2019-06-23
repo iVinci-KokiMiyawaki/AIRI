@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name" : "tanaka",
+    "nickname" : "田中太郎",
+    "birthday" : "1990/11/11",
+    "password" : "password"
+  },
+  {
+    "id": 2,
+    "name" : "jiro",
+    "nickname" : "鈴木次郎",
+    "birthday" : "1992/12/12",
+    "password" : "password"
+  }
+]
